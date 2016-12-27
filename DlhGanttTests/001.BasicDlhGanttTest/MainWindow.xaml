@@ -155,7 +155,11 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <gantt:GanttChartDataGrid  IsUndoEnabled="True" AreSummaryRowsBold="True" AreTaskDependencyConstraintsDisabledWhileDragging="True" IsMouseWheelZoomEnabledUpdatingScales="True" IsFittingToTimelinePageEnabledUpdatingScales="True" in >
+        <gantt:GanttChartDataGrid  IsUndoEnabled="True"
+                                   AreSummaryRowsBold="True"
+                                   AreTaskDependencyConstraintsDisabledWhileDragging="True"
+                                   IsMouseWheelZoomEnabledUpdatingScales="True"
+                                   IsFittingToTimelinePageEnabledUpdatingScales="True">
             <gantt:GanttChartDataGrid.Items>
                 <gantt:GanttChartItem Content="Task 1" />
                 <gantt:GanttChartItem Content="Task 1.1" Indentation="1" />
