@@ -1,0 +1,19 @@
+﻿<Window x:Class="GanttChartDataGridCustomDataBindingSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pdgcc="clr-namespace:DlhSoft.Windows.Controls;assembly=DlhSoft.ProjectData.GanttChart.LightWPF.Controls"
+        xmlns:local="clr-namespace:GanttChartDataGridCustomDataBindingSample"
+        Title="GanttChartDataGrid Custom Data Binding Sample" Width="800" Height="600">
+    <Window.Resources>
+        <local:CustomDataConverter x:Key="CustomDataConverter"/>
+    </Window.Resources>
+    <DockPanel>
+        <!-- DataContext is set to custom data in code behind, and converted to a collection of GanttChartItem objects by CustomDataConverter. -->
+        <pdgcc:GanttChartDataGrid x:Name="GanttChartDataGrid" Items="{Binding Converter={StaticResource CustomDataConverter}}">
+            <pdgcc:GanttChartDataGrid.Columns>
+                <!-- Define new columns for custom properties, using Tag prefix to refer the original custom data item properties. -->
+                <DataGridTextColumn Header="Description" Binding="{Binding Tag.Description}"/>
+            </pdgcc:GanttChartDataGrid.Columns>
+        </pdgcc:GanttChartDataGrid>
+    </DockPanel>
+</Window>

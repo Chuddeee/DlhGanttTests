@@ -1,0 +1,27 @@
+﻿<Window x:Class="GanttChartDataGridCustomPropertiesSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pdgcc="clr-namespace:DlhSoft.Windows.Controls;assembly=DlhSoft.ProjectData.GanttChart.LightWPF.Controls"
+        xmlns:local="clr-namespace:GanttChartDataGridCustomPropertiesSample"
+        Title="GanttChartDataGrid Custom Properties Sample" Width="800" Height="600">
+    <DockPanel>
+        <pdgcc:GanttChartDataGrid x:Name="GanttChartDataGrid">
+            <pdgcc:GanttChartDataGrid.Columns>
+                <!-- Define new columns for custom properties. -->
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+            </pdgcc:GanttChartDataGrid.Columns>
+            <pdgcc:GanttChartDataGrid.Items>
+                <!-- Use a custom item that inherits from GanttChartItem (see code behind). -->
+                <!-- Some item properties are set in code behind. -->
+                <local:CustomGanttChartItem Content="Task 1" Description="Description of Task 1"/>
+                <local:CustomGanttChartItem Content="Task 1.1" Indentation="1" Description="Description of Task 1.1"/>
+                <local:CustomGanttChartItem Content="Task 1.2" Indentation="1" Description="Description of Task 1.2"/>
+                <local:CustomGanttChartItem Content="Task 2" Description="Description of Task 2"/>
+                <local:CustomGanttChartItem Content="Task 2.1" Indentation="1" Description="Description of Task 2.1"/>
+                <local:CustomGanttChartItem Content="Task 2.2" Indentation="1" Description="Description of Task 2.2"/>
+                <local:CustomGanttChartItem Content="Task 2.2.1" Indentation="2" Description="Description of Task 2.2.1"/>
+                <local:CustomGanttChartItem Content="Task 2.2.2" Indentation="2" Description="Description of Task 2.2.2"/>
+            </pdgcc:GanttChartDataGrid.Items>
+        </pdgcc:GanttChartDataGrid>
+    </DockPanel>
+</Window>
