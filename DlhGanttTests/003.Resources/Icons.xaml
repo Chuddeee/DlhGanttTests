@@ -1,0 +1,6 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:_003.Resources">
+    <BitmapImage x:Key="TaskIcon" UriSource="Images/Task.Icon.png" />
+    <Geometry x:Key="Cube">F1 M 18,21.7037L 43.9259,18L 58,25.4074L 58,54.2963L 32.8148,58L 18,49.1111L 18,21.7037 Z</Geometry>
+</ResourceDictionary>
