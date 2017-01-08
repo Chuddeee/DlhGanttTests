@@ -1,0 +1,38 @@
+﻿<Window x:Class="EWT.RTB.FirstOverview.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EWT.RTB.FirstOverview"
+        xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="bold" Command="{x:Static EditingCommands.ToggleItalic}" CommandTarget="{Binding ElementName=rtb}"></Button>
+            <Button Content="italic" Command="{x:Static EditingCommands.ToggleBold}" CommandTarget="{Binding ElementName=rtb}"></Button>
+            <Button Content="debug" Command="{Binding DebugCommand}"></Button>
+        </StackPanel>
+        <xc:RichTextBox x:Name="rtb" Text="{Binding Text}" Grid.Row="1" TextChanged="rtb_TextChanged">
+            <xc:RichTextBox.Document>
+                <FlowDocument>
+                    <Paragraph>asdf</Paragraph>
+                    <Paragraph>asdf</Paragraph>
+                    <Paragraph>asdf</Paragraph>
+                </FlowDocument>
+            </xc:RichTextBox.Document>
+            <xc:RichTextBox.TextFormatter>
+                <local:DocxFormatter />
+            </xc:RichTextBox.TextFormatter>
+        </xc:RichTextBox>
+        <TextBox Grid.Row="2" x:Name="tbFormatter" TextWrapping="Wrap" />
+    </Grid>
+</Window>
