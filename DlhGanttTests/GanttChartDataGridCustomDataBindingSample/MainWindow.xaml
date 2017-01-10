@@ -3,17 +3,76 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:pdgcc="clr-namespace:DlhSoft.Windows.Controls;assembly=DlhSoft.ProjectData.GanttChart.LightWPF.Controls"
         xmlns:local="clr-namespace:GanttChartDataGridCustomDataBindingSample"
-        Title="GanttChartDataGrid Custom Data Binding Sample" Width="800" Height="600">
+        xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="GanttChartDataGrid Custom Data Binding Sample"
+        Width="800"
+        Height="600">
     <Window.Resources>
-        <local:CustomDataConverter x:Key="CustomDataConverter"/>
+        <local:DataConverter x:Key="CustomDataConverter" />
     </Window.Resources>
     <DockPanel>
-        <!-- DataContext is set to custom data in code behind, and converted to a collection of GanttChartItem objects by CustomDataConverter. -->
-        <pdgcc:GanttChartDataGrid x:Name="GanttChartDataGrid" Items="{Binding Converter={StaticResource CustomDataConverter}}">
+        <!--  DataContext is set to custom data in code behind, and converted to a collection of GanttChartItem objects by CustomDataConverter.  -->
+        <pdgcc:GanttChartDataGrid x:Name="GanttChartDataGrid" Items="{Binding Tasks, Converter={x:Static local:DataConverter.Instance}}">
             <pdgcc:GanttChartDataGrid.Columns>
-                <!-- Define new columns for custom properties, using Tag prefix to refer the original custom data item properties. -->
-                <DataGridTextColumn Header="Description" Binding="{Binding Tag.Description}"/>
+                <pdgcc:DataGridColumnCollection>
+                    <DataGridTemplateColumn MinWidth="50" Header="Duration">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--  Optionally, use ConverterParameter=0.##d/8 for DurationStringConverter to display the value in working days of 8 hours.  -->
+                                <ContentControl Content="{Binding Duration, Converter={x:Static local:DurationStringConverter.Instance}, ConverterParameter=0.##d/8}" Padding="4" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Duration,
+                                                        Converter={x:Static local:DurationStringConverter.Instance},
+                                                        ConverterParameter=0.##d/8,
+                                                        Mode=TwoWay}"
+                                         IsReadOnly="{Binding HasChildren}"
+                                         BorderThickness="0"
+                                         Padding="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="140" Header="Start">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding MyStartDate, Converter={x:Static local:DateTimeStringConverter.Instance}, ConverterParameter=g}" Padding="4" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <!--<DatePicker SelectedDate="{Binding Start, Mode=TwoWay}" IsEnabled="{Binding IsLeaf}" Padding="0"/>-->
+                                <xc:DateTimePicker IsEnabled="{Binding IsLeaf}"
+                                                   Padding="0"
+                                                   Value="{Binding MyStartDate,
+                                                                   Mode=TwoWay}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="140" Header="Finish">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding MyFinishDate, Converter={x:Static local:DateTimeStringConverter.Instance}, ConverterParameter=g}" Padding="4" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding MyFinishDate,
+                                                                   Converter={StaticResource FinishDateConverter},
+                                                                   Mode=TwoWay}"
+                                            IsEnabled="{Binding IsLeaf}"
+                                            Padding="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+
+                    <!--  Define new columns for custom properties, using Tag prefix to refer the original custom data item properties.  -->
+                    <DataGridTextColumn Header="Description" Binding="{Binding Tag.Description}" />
+                </pdgcc:DataGridColumnCollection>
             </pdgcc:GanttChartDataGrid.Columns>
         </pdgcc:GanttChartDataGrid>
+        <Button Click="Button_Click" />
     </DockPanel>
 </Window>

@@ -24,7 +24,10 @@ namespace GanttChartDataGridBarTemplatingSample
         {
             Markers.CollectionChanged += Markers_CollectionChanged;
             Interruptions.CollectionChanged += Interruptions_CollectionChanged;
+            VisibilityStatus = Visibility.Collapsed;
         }
+
+        public Visibility VisibilityStatus { get; set; }
 
         private ImageSource icon;
         public ImageSource Icon

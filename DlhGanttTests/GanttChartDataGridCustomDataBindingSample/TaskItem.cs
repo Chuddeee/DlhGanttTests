@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 
 namespace GanttChartDataGridCustomDataBindingSample
 {
-    public class CustomTaskItem
+    public class TaskItem
     {
         public string Name { get; set; }
         public int IndentLevel { get; set; }
@@ -20,5 +20,8 @@ namespace GanttChartDataGridCustomDataBindingSample
         public DateTime CompletionCurrentDate { get; set; }
         public string AssignmentsString { get; set; }
         public string Description { get; set; }
+        public decimal ExtraCosts { get; set; }
+        public DateTime? MyStartDate { get; set; }
+        public DateTime? MyFinishDate { get; set; }
     }
 }

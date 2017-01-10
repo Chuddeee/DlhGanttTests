@@ -17,17 +17,24 @@ using System.ComponentModel;
 
 namespace GanttChartDataGridCustomDataBindingSample
 {
-    public class CustomDataConverter : IValueConverter
+    public class DataConverter : IValueConverter
     {
+        static DataConverter()
+        {
+            Instance = new DataConverter();
+        }
+
+        public static DataConverter Instance { get; private set; }
+
         // Retrieve a collection of GanttChartItem based on the CustomTaskItem data context.
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            IEnumerable<CustomTaskItem> dataContext = value as IEnumerable<CustomTaskItem>;
+            IEnumerable<TaskItem> tasks = value as IEnumerable<TaskItem>;
             ObservableCollection<GanttChartItem> items = new ObservableCollection<GanttChartItem>();
-            foreach (CustomTaskItem customTaskItem in dataContext)
+            foreach (TaskItem customTaskItem in tasks)
             {
-                GanttChartItem item =
-                    new GanttChartItem
+                CustomGanttChartItem item =
+                    new CustomGanttChartItem
                     {
                         Content = customTaskItem.Name,
                         Indentation = customTaskItem.IndentLevel,
@@ -36,7 +43,12 @@ namespace GanttChartDataGridCustomDataBindingSample
                         CompletedFinish = customTaskItem.CompletionCurrentDate,
                         AssignmentsContent = customTaskItem.AssignmentsString,
                         // Set the associated CustomTaskItem object as the Tag value of the GanttChartItem.
-                        Tag = customTaskItem
+                        Tag = customTaskItem,
+                        // CustomGanttChart
+                        ExtraCosts = customTaskItem.ExtraCosts,
+                        MyStartDate = customTaskItem.MyStartDate,
+                        MyFinishDate = customTaskItem.MyFinishDate
+
                     };
                 items.Add(item);
                 item.PropertyChanged += Item_PropertyChanged;
@@ -45,10 +57,11 @@ namespace GanttChartDataGridCustomDataBindingSample
         }
 
         // When a managed property changes on a GanttChartItem, propagate the updated value to the appropriate property of the associated CustomTaskItem object.
+        // Когда  изменяется свойство в GanttChartItem измененное свойство передается в ассоциированное с ним свойство в CustomTaskItem
         private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            GanttChartItem item = sender as GanttChartItem;
-            CustomTaskItem customTaskItem = item.Tag as CustomTaskItem;
+            CustomGanttChartItem item = sender as CustomGanttChartItem;
+            TaskItem customTaskItem = item.Tag as TaskItem;
             switch (e.PropertyName)
             {
                 case "Content":
@@ -65,6 +78,15 @@ namespace GanttChartDataGridCustomDataBindingSample
                     break;
                 case "AssignmentsContent":
                     customTaskItem.AssignmentsString = item.AssignmentsContent as string;
+                    break;
+                case "ExtraCost":
+                    customTaskItem.ExtraCosts = item.ExtraCosts;
+                    break;
+                case "MyStartDate":
+                    customTaskItem.MyStartDate = item.MyStartDate;
+                    break;
+                case "MyFinishDate":
+                    customTaskItem.MyFinishDate = item.MyFinishDate;
                     break;
             }
         }
