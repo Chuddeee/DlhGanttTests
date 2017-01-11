@@ -27,6 +27,7 @@ namespace GanttChartDataGridCustomDataBindingSample
         public static DataConverter Instance { get; private set; }
 
         // Retrieve a collection of GanttChartItem based on the CustomTaskItem data context.
+        // Формируем коллекцию CustomChartItem на основе привязанных TaskItem'ов
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             IEnumerable<TaskItem> tasks = value as IEnumerable<TaskItem>;

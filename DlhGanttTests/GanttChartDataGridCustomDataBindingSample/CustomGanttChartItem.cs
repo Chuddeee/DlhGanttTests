@@ -31,37 +31,82 @@ namespace GanttChartDataGridCustomDataBindingSample
             }
         }
 
-        private DateTime? myStartDate;
 
         public DateTime? MyStartDate
         {
-            get { return myStartDate; }
-            set
+            get { return (DateTime?)GetValue(MyStartDateProperty); }
+            set { SetValue(MyStartDateProperty, value); }
+        }
+
+        public static readonly DependencyProperty MyStartDateProperty =
+            DependencyProperty.Register("MyStartDate", typeof(DateTime?), typeof(CustomGanttChartItem), new PropertyMetadata(null, OnMyStartDatePropertyChanged));
+
+        private static void OnMyStartDatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var item = d as CustomGanttChartItem;
+            if (item != null)
             {
-                myStartDate = value;
-                Start = MyStartDate ?? DateTime.Today;
-
-                BarVisibility = CheckBarVisibility();
-
-                OnPropertyChanged(nameof(MyStartDate));
+                item.OnPropertyChanged(e.Property.Name);
+                item.Start = item.MyStartDate ?? DateTime.Today;
+                item.BarVisibility = item.CheckBarVisibility();
             }
         }
 
-        private DateTime? myFinishDate;
+
 
         public DateTime? MyFinishDate
         {
-            get { return myFinishDate; }
-            set
+            get { return (DateTime?)GetValue(MyFinishDateProperty); }
+            set { SetValue(MyFinishDateProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyFinishDate.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyFinishDateProperty =
+            DependencyProperty.Register("MyFinishDate", typeof(DateTime?), typeof(CustomGanttChartItem), new PropertyMetadata(null, OnMyFinishDatePropertyChanged));
+
+        private static void OnMyFinishDatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var item = d as CustomGanttChartItem;
+            if (item != null)
             {
-                myFinishDate = value;
-                Finish = MyFinishDate ?? DateTime.Today;
-
-                BarVisibility = CheckBarVisibility();
-
-                OnPropertyChanged(nameof(MyFinishDate));
+                item.OnPropertyChanged(e.Property.Name);
+                item.Finish = item.MyFinishDate ?? DateTime.Today;
+                item.BarVisibility = item.CheckBarVisibility();
             }
         }
+
+
+
+        //private DateTime? myStartDate;
+        //public DateTime? MyStartDate
+        //{
+        //    get { return myStartDate; }
+        //    set
+        //    {
+        //        myStartDate = value;
+        //        Start = MyStartDate ?? DateTime.Today;
+
+        //        BarVisibility = CheckBarVisibility();
+
+        //        OnPropertyChanged(nameof(MyStartDate));
+        //    }
+        //}
+
+        //private DateTime? myFinishDate;
+
+        //public DateTime? MyFinishDate
+        //{
+        //    get { return myFinishDate; }
+        //    set
+        //    {
+        //        myFinishDate = value;
+        //        Finish = MyFinishDate ?? DateTime.Today;
+
+        //        BarVisibility = CheckBarVisibility();
+
+        //        OnPropertyChanged(nameof(MyFinishDate));
+        //    }
+        //}
 
         private Visibility CheckBarVisibility()
         {

@@ -45,5 +45,10 @@ namespace GanttChartDataGridCustomDataBindingSample
         {
 
         }
+
+        private void GanttChartDataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
