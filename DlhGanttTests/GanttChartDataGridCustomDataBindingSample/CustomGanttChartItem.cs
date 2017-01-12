@@ -8,7 +8,7 @@ using DlhSoft.Windows.Controls;
 
 namespace GanttChartDataGridCustomDataBindingSample
 {
-    class CustomGanttChartItem : GanttChartItem, INotifyPropertyChanged
+    public class CustomGanttChartItem : GanttChartItem, INotifyPropertyChanged
     {
         private decimal extraCosts;
         public decimal ExtraCosts

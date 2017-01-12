@@ -54,7 +54,7 @@ namespace GanttChartDataGridCustomDataBindingSample
         }
 
         private void GanttChartDataGrid_KeyDown(object sender, KeyEventArgs e)
-        {
+         {
             if (e.Key==Key.Space)
             {
                 GanttChartDataGrid.BeginEdit();
