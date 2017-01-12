@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -34,6 +35,12 @@ namespace GanttChartDataGridCustomDataBindingSample
             //    new CustomTaskItem { Name = "Task 2.1", IndentLevel = 1, StartDate = DateTime.Today.Add(TimeSpan.Parse("08:00:00")), FinishDate = DateTime.Today.AddDays(2).Add(TimeSpan.Parse("12:00:00")), Description = "Description of custom task 2.1" },
             //    new CustomTaskItem { Name = "Task 2.2", IndentLevel = 1, StartDate = DateTime.Today.Add(TimeSpan.Parse("08:00:00")), FinishDate = DateTime.Today.AddDays(3).Add(TimeSpan.Parse("12:00:00")), Description = "Description of custom task 2.2" }
             //};
+
+            GanttChartDataGrid.AssignableResources = new ObservableCollection<string> { "Resource 1", "Resource 2", "Resource 3",
+                                                                                        "Material 1", "Material 2" };
+
+            
+
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -48,7 +55,10 @@ namespace GanttChartDataGridCustomDataBindingSample
 
         private void GanttChartDataGrid_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.Key==Key.Space)
+            {
+                GanttChartDataGrid.BeginEdit();
+            }
         }
     }
 }

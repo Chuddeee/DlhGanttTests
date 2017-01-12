@@ -736,5 +736,10 @@ namespace GanttChartDataGridSample
                 }
             });
         }
+
+        private void DragTaskThumb_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("");
+        }
     }
 }

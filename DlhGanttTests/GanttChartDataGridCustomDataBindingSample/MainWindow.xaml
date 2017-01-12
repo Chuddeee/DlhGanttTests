@@ -183,7 +183,7 @@
                                   PrintingTemplate="{StaticResource PrintingDataTemplate}"
                                   PredecessorToolTipTemplate="{StaticResource PredecessorToolTipDataTemplate}"
                                   ToolTipTemplate="{StaticResource ToolTipDataTemplate}"
-                                  Keyboard.KeyDown="GanttChartDataGrid_KeyDown" >
+                                  Keyboard.KeyDown="GanttChartDataGrid_KeyDown">
             <pdgcc:GanttChartDataGrid.Columns>
                 <pdgcc:DataGridColumnCollection>
                     <DataGridTemplateColumn>
