@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DlhSoft.Windows.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,18 +10,18 @@ namespace GanttChartDataGridCustomDataBindingSample
     public class MainWindowViewModel
     {
         public ObservableCollection<TaskItem> Tasks { get; set; }
-        public ObservableCollection<CustomGanttChartItem> Items { get; set; }
+        public ObservableCollection<GanttChartItem> Items { get; set; }
 
         public MainWindowViewModel()
         {
-            Tasks = GetTasks(1000);
-            Items = GetItems(1000);
+            Tasks = GetTasks(250);
+            Items = GetItems(250);
 
         }
 
-        private ObservableCollection<CustomGanttChartItem> GetItems(int n)
+        private ObservableCollection<GanttChartItem> GetItems(int n)
         {
-            var result = new ObservableCollection<CustomGanttChartItem>();
+            var result = new ObservableCollection<GanttChartItem>();
 
             for (int i = 0; i < n; i++)
             {

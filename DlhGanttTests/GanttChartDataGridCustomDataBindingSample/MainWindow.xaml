@@ -173,7 +173,7 @@
         </Grid.ColumnDefinitions>
         <!--  DataContext is set to custom data in code behind, and converted to a collection of GanttChartItem objects by CustomDataConverter.  -->
         <pdgcc:GanttChartDataGrid x:Name="GanttChartDataGrid"
-                                  Items="{Binding Items}"
+                                  Items="{Binding Tasks, Converter={x:Static local:DataConverter.Instance}}"
                                   IsUndoEnabled="True"
                                   AreSummaryRowsBold="True"
                                   AreTaskDependencyConstraintsDisabledWhileDragging="True"
