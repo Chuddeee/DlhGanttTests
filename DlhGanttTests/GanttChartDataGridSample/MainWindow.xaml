@@ -419,7 +419,7 @@
                                            Source="Images/Task.Icon.png" />
                                     <!--  Optionally, use a DragTaskThumb object with Role set to UpdateIndex to allow moving the task item in the hierarchy using drag and drop operations.  -->
                                     <!--  Optionally, specify true for RoleParameter property of DragTaskThumb object to further encapsulate children when moving the task item in the hierarchy.  -->
-                                    <pdgcc:DragTaskThumb Role="UpdateIndex" MouseDoubleClick="DragTaskThumb_MouseDoubleClick" />
+                                    <pdgcc:DragTaskThumb RoleParameter="true" Role="UpdateIndex" MouseDoubleClick="DragTaskThumb_MouseDoubleClick" />
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -589,18 +589,18 @@
                     <DataGridTemplateColumn MinWidth="160" Header="Assignments">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentControl VerticalAlignment="Center"
+                                <ContentControl VerticalAlignment="Center" Name="Assignments"
                                                 Content="{Binding AssignmentsContent}"
-                                                Padding="4" />
+                                                Padding="4" MouseDoubleClick="Assignments_MouseDoubleClick" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.CellEditingTemplate>
+                        <!--<DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
                                 <pdgcc:AssignmentComboBox AvailableItemsSource="{Binding AssignableResources, RelativeSource={RelativeSource AncestorType=pdgcc:GanttChartDataGrid}}" SelectedContent="{Binding AssignmentsContent, Mode=TwoWay}" />
-                                <!--  Alternatively you may use a simple editable ComboBox instead as indicated in the next line of markup.  -->
-                                <!-- <ComboBox ItemsSource="{Binding AssignableResources, RelativeSource={RelativeSource AncestorType=pdgcc:GanttChartDataGrid}}" Text="{Binding AssignmentsContent, Mode=TwoWay}" IsEditable="True"/> -->
+                                  Alternatively you may use a simple editable ComboBox instead as indicated in the next line of markup.  
+                                 <ComboBox ItemsSource="{Binding AssignableResources, RelativeSource={RelativeSource AncestorType=pdgcc:GanttChartDataGrid}}" Text="{Binding AssignmentsContent, Mode=TwoWay}" IsEditable="True"/> 
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>-->
                     </DataGridTemplateColumn>
                     <DataGridTextColumn MinWidth="80"
                                         Binding="{Binding Cost,

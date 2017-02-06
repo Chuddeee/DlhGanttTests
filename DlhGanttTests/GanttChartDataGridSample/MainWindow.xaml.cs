@@ -741,5 +741,10 @@ namespace GanttChartDataGridSample
         {
             MessageBox.Show("");
         }
+
+        private void Assignments_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("");
+        }
     }
 }
