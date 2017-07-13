@@ -143,7 +143,7 @@ namespace GanttChartDataGridSample
             // }
 
             // Optionally, define assignable resources.
-            GanttChartDataGrid.AssignableResources = new ObservableCollection<string> { "Resource 1", "Resource 2", "Resource 3", 
+            GanttChartDataGrid.AssignableResources = new ObservableCollection<string> { "Resource 1", "Resource 2", "Resource 3",
                                                                                         "Material 1", "Material 2" };
 
             // Optionally, define the quantity values to consider when leveling resources, indicating maximum material amounts available for use at the same time.
@@ -168,7 +168,7 @@ namespace GanttChartDataGridSample
             BaselineCheckBox.IsChecked = true;
             EnableDependencyConstraintsCheckBox.IsChecked = true;
         }
-         
+
         // Control area commands.
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
@@ -529,11 +529,20 @@ namespace GanttChartDataGridSample
             Window scheduleChartWindow =
                 new Window
                 {
-                    Owner = this, Title = "Schedule Chart", WindowStartupLocation = WindowStartupLocation.CenterOwner, Width = 640, Height = 480, ResizeMode = ResizeMode.CanResize,
+                    Owner = this,
+                    Title = "Schedule Chart",
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Width = 640,
+                    Height = 480,
+                    ResizeMode = ResizeMode.CanResize,
                     Content = new ScheduleChartDataGrid
                     {
-                        Items = scheduleChartItems, DataGridWidth = new GridLength(0.2, GridUnitType.Star),
-                        UseMultipleLinesPerRow = true, AreIndividualItemAppearanceSettingsApplied = true, IsAlternatingItemBackgroundInverted = true, UnassignedScheduleChartItemContent = GanttChartDataGrid.UnassignedScheduleChartItemContent // Optional
+                        Items = scheduleChartItems,
+                        DataGridWidth = new GridLength(0.2, GridUnitType.Star),
+                        UseMultipleLinesPerRow = true,
+                        AreIndividualItemAppearanceSettingsApplied = true,
+                        IsAlternatingItemBackgroundInverted = true,
+                        UnassignedScheduleChartItemContent = GanttChartDataGrid.UnassignedScheduleChartItemContent // Optional
                     }
                 };
             scheduleChartWindow.ShowDialog();
@@ -562,7 +571,12 @@ namespace GanttChartDataGridSample
             Window loadChartWindow =
                 new Window
                 {
-                    Owner = this, Title = "Load Chart", WindowStartupLocation = WindowStartupLocation.CenterOwner, Width = 640, Height = 300, ResizeMode = ResizeMode.CanMinimize,
+                    Owner = this,
+                    Title = "Load Chart",
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Width = 640,
+                    Height = 300,
+                    ResizeMode = ResizeMode.CanMinimize,
                     Content = dockPanel
                 };
             loadChartWindow.ShowDialog();
@@ -588,11 +602,11 @@ namespace GanttChartDataGridSample
             commandsDockPanel.Children.Add(addResourceButton);
             commandsDockPanel.Children.Add(newResourceTextBox);
             dockPanel.Children.Add(resourceListBox);
-            addResourceButton.Click += delegate 
-            { 
+            addResourceButton.Click += delegate
+            {
                 var newResource = newResourceTextBox.Text;
                 if (!string.IsNullOrEmpty(newResource) && !resourceItems.Contains(newResource))
-                    resourceItems.Add(newResource); 
+                    resourceItems.Add(newResource);
                 newResourceTextBox.Clear();
                 resourceListBox.SelectedItem = newResource;
             };
@@ -608,7 +622,12 @@ namespace GanttChartDataGridSample
             Window resourceWindow =
                 new Window
                 {
-                    Owner = this, Title = "Resources", WindowStartupLocation = WindowStartupLocation.CenterOwner, Width = 640, Height = 300, ResizeMode = ResizeMode.CanMinimize,
+                    Owner = this,
+                    Title = "Resources",
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Width = 640,
+                    Height = 300,
+                    ResizeMode = ResizeMode.CanMinimize,
                     Content = dockPanel
                 };
             resourceWindow.ShowDialog();
@@ -624,10 +643,15 @@ namespace GanttChartDataGridSample
             Window pertChartWindow =
                 new Window
                 {
-                    Owner = this, Title = "PERT Chart", WindowStartupLocation = WindowStartupLocation.CenterOwner, Width = 640, Height = 480, ResizeMode = ResizeMode.CanResize,
+                    Owner = this,
+                    Title = "PERT Chart",
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Width = 640,
+                    Height = 480,
+                    ResizeMode = ResizeMode.CanResize,
                     Content = pertChartView
                 };
-            pertChartView.AsyncPresentationCompleted += delegate(object senderCompleted, EventArgs eCompleted)
+            pertChartView.AsyncPresentationCompleted += delegate (object senderCompleted, EventArgs eCompleted)
             {
                 // Optionally, highlight the critical path.
                 foreach (var item in pertChartView.GetCriticalItems())
@@ -655,10 +679,15 @@ namespace GanttChartDataGridSample
             Window networkDiagramWindow =
                 new Window
                 {
-                    Owner = this, Title = "Network Diagram", WindowStartupLocation = WindowStartupLocation.CenterOwner, Width = 960, Height = 600, ResizeMode = ResizeMode.CanResize,
+                    Owner = this,
+                    Title = "Network Diagram",
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    Width = 960,
+                    Height = 600,
+                    ResizeMode = ResizeMode.CanResize,
                     Content = networkDiagramView
                 };
-            networkDiagramView.AsyncPresentationCompleted += delegate(object senderCompleted, EventArgs eCompleted)
+            networkDiagramView.AsyncPresentationCompleted += delegate (object senderCompleted, EventArgs eCompleted)
             {
                 // Optionally, reposition start and finish milestones between the first and second rows of the view.
                 networkDiagramView.RepositionEnds();
@@ -674,9 +703,9 @@ namespace GanttChartDataGridSample
         }
         private void ProjectStatisticsButton_Click(object sender, RoutedEventArgs e)
         {
-            var statistics = string.Format("Start:\t{0:d}\nFinish:\t{1:d}\nEffort:\t{2:0.##}h\nCompl.:\t{3:0.##%}\nCost:\t${4:0.##}", 
-                GanttChartDataGrid.GetProjectStart(), GanttChartDataGrid.GetProjectFinish(), 
-                GanttChartDataGrid.GetProjectEffort().TotalHours, GanttChartDataGrid.GetProjectCompletion(), 
+            var statistics = string.Format("Start:\t{0:d}\nFinish:\t{1:d}\nEffort:\t{2:0.##}h\nCompl.:\t{3:0.##%}\nCost:\t${4:0.##}",
+                GanttChartDataGrid.GetProjectStart(), GanttChartDataGrid.GetProjectFinish(),
+                GanttChartDataGrid.GetProjectEffort().TotalHours, GanttChartDataGrid.GetProjectCompletion(),
                 GanttChartDataGrid.GetProjectCost());
             MessageBox.Show(statistics, "Project statistics", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -722,12 +751,25 @@ namespace GanttChartDataGridSample
         }
         private void ExportImageButton_Click(object sender, RoutedEventArgs e)
         {
+            //GanttChartDataGrid.Export((Action)delegate
+            //{
+            //    SaveFileDialog saveFileDialog = new SaveFileDialog { Title = "Export Image To", Filter = "PNG image files|*.png" };
+            //    if (saveFileDialog.ShowDialog() != true)
+            //        return;
+            //    BitmapSource bitmapSource = GanttChartDataGrid.GetExportBitmapSource(96 * 2);
+            //    using (Stream stream = saveFileDialog.OpenFile())
+            //    {
+            //        PngBitmapEncoder pngBitmapEncoder = new PngBitmapEncoder();
+            //        pngBitmapEncoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+            //        pngBitmapEncoder.Save(stream);
+            //    }
+            //});
             GanttChartDataGrid.Export((Action)delegate
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog { Title = "Export Image To", Filter = "PNG image files|*.png" };
                 if (saveFileDialog.ShowDialog() != true)
                     return;
-                BitmapSource bitmapSource = GanttChartDataGrid.GetExportBitmapSource(96 * 2);
+                var bitmapSource = GanttChartDataGrid.GetExportBitmapSource(96);
                 using (Stream stream = saveFileDialog.OpenFile())
                 {
                     PngBitmapEncoder pngBitmapEncoder = new PngBitmapEncoder();
@@ -735,6 +777,7 @@ namespace GanttChartDataGridSample
                     pngBitmapEncoder.Save(stream);
                 }
             });
+
         }
 
         private void DragTaskThumb_MouseDoubleClick(object sender, MouseButtonEventArgs e)

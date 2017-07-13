@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "001.BasicDlhGanttTest", "001.BasicDlhGanttTest\001.BasicDlhGanttTest.csproj", "{2DF094FE-A82F-4188-A7D2-B8ACC1D176FE}"
 EndProject
@@ -62,6 +62,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "002.RichTextBoxTest", "002.RichTextBoxTest\002.RichTextBoxTest.csproj", "{2B745C30-07B0-4886-B149-05CA0E01A9CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "003.ToolkitRichTextBoxTest", "003.ToolkitRichTextBoxTest\003.ToolkitRichTextBoxTest.csproj", "{1F8E37F6-890B-402F-A6B2-A4D4183E1ECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTab", "TestTab\TestTab.csproj", "{87B1F98D-6898-4A60-958D-0D6820D76CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicTabItems", "DynamicTabItems\DynamicTabItems.csproj", "{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -232,6 +236,18 @@ Global
 		{1F8E37F6-890B-402F-A6B2-A4D4183E1ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F8E37F6-890B-402F-A6B2-A4D4183E1ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F8E37F6-890B-402F-A6B2-A4D4183E1ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B1F98D-6898-4A60-958D-0D6820D76CD4}.ComponentSource.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B1F98D-6898-4A60-958D-0D6820D76CD4}.ComponentSource.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B1F98D-6898-4A60-958D-0D6820D76CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B1F98D-6898-4A60-958D-0D6820D76CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B1F98D-6898-4A60-958D-0D6820D76CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B1F98D-6898-4A60-958D-0D6820D76CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}.ComponentSource.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}.ComponentSource.Release|Any CPU.Build.0 = Release|Any CPU
+		{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7765E1D3-227F-4FA8-A4C2-1CCFDF38EDB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
