@@ -19,7 +19,7 @@
             <Button Click="Button_Click">Add</Button>
             <Button Click="Button_Click_1">Debug</Button>
         </StackPanel>
-        <TabControl Grid.Row="1" ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTab}">
+        <TabControl Name="NhpTabControl" Grid.Row="1" ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTab}">
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <local:MyGantt></local:MyGantt>

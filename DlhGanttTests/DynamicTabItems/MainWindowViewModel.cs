@@ -70,10 +70,5 @@ namespace DynamicTabItems
                 new GanttChartItem(){ Content="3", Start=DateTime.Now},
             }));
         }
-
-        public void Debug()
-        {
-
-        }
     }
 }
