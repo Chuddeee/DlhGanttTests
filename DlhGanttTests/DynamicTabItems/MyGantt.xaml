@@ -2,6 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                     xmlns:hdc="clr-namespace:DlhSoft.Windows.Controls;assembly=DlhSoft.HierarchicalData.LightWPF.Controls"
+        xmlns:pdgcc="clr-namespace:DlhSoft.Windows.Controls;assembly=DlhSoft.ProjectData.GanttChart.LightWPF.Controls"
+
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                      xmlns:gantt="clr-namespace:DlhSoft.Windows.Controls;assembly=DlhSoft.ProjectData.GanttChart.LightWPF.Controls"
         xmlns:pdgccConverters="clr-namespace:DlhSoft.Windows.Converters;assembly=DlhSoft.ProjectData.GanttChart.LightWPF.Controls"
@@ -9,7 +12,92 @@
              xmlns:local="clr-namespace:DynamicTabItems"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <gantt:GanttChartDataGrid Items="{Binding Tasks}"></gantt:GanttChartDataGrid>
+    <UserControl.Resources>
+        <pdgccConverters:NumberStringConverter x:Key="NumberStringConverter" />
+        <Style x:Key="HighlightTextBoxStyle" TargetType="{x:Type TextBox}">
+            <EventSetter Event="GotFocus" Handler="SelectAllText"/>
+
+        </Style>
+    </UserControl.Resources>
+    <Grid >
+        <gantt:GanttChartDataGrid  Items="{Binding Tasks}" Name="GanttChart" IsReadOnly="{Binding IsReadOnly}" SelectionChanged="GanttChartDataGrid_SelectionChanged" >
+
+            <pdgcc:GanttChartDataGrid.Columns>
+                <pdgcc:DataGridColumnCollection>
+                    <DataGridTextColumn Binding="{Binding IndexString}"   >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextAlignment" Value="Right" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <hdc:DataTreeGridColumn MinWidth="160" Header="Task"
+                                             IsReadOnly="{Binding IsReadOnly}"   >
+                        <hdc:DataTreeGridColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <local:AutoSelectTextBox  Text="{Binding Content}" 
+                                         
+                                          FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"
+                                         Style="{StaticResource HighlightTextBoxStyle}"
+                                    >
+                                </local:AutoSelectTextBox>
+                              
+                            </DataTemplate>
+                        </hdc:DataTreeGridColumn.CellEditingTemplate>
+                    </hdc:DataTreeGridColumn>
+                    <DataGridTemplateColumn Header="Completed"   >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Name="TextBlock"
+                                           HorizontalAlignment="Center"
+                                           Text="✓"
+                                           
+                                           Visibility="Hidden"
+                                           Padding="4,0,10,8" IsEnabled="False"  />
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                        <Setter TargetName="TextBlock"  Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          IsChecked="{Binding IsCompleted,
+                                                              Mode=TwoWay}"
+                                          IsEnabled="{Binding IsLeaf}" 
+                                          Padding="4" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="45" Header="%"  IsReadOnly="{Binding IsReadOnly}" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Completion, Converter={StaticResource NumberStringConverter}, ConverterParameter=0.##%}" Padding="4" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Completion,
+                                                        Converter={StaticResource NumberStringConverter},
+                                                        ConverterParameter=0.##%,
+                                                        Mode=TwoWay}"
+                                         IsReadOnly="{Binding HasChildren}"
+                                         IsEnabled="{Binding IsReadOnly}"
+                                         BorderThickness="0"
+                                         Padding="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+
+                    <!--  Define new columns for custom properties, using Tag prefix to refer the original custom data item properties.  -->
+                    <DataGridTextColumn Header="Description" Binding="{Binding Tag.Description}"  IsReadOnly="{Binding IsReadOnly}"  />
+                </pdgcc:DataGridColumnCollection>
+            </pdgcc:GanttChartDataGrid.Columns>
+
+        </gantt:GanttChartDataGrid>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DlhSoft.Windows.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,43 @@ namespace DynamicTabItems
         public MyGantt()
         {
             InitializeComponent();
+        }
+
+        private void GanttChartDataGrid_ItemActivated(object sender, DlhSoft.Windows.Controls.ItemActivatedEventArgs e)
+        {
+
+        }
+
+        private void GanttChartDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (this.GanttChart.SelectedItem!=null)
+            //{
+            //    var item =GanttChart.SelectedItem as NhpGanttCgartItem;
+
+            //    if (item!=null)
+            //    {
+            //        item.IsReadOnly = false;
+            //    }
+            //}
+        }
+
+        private void GanttChart_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var tb = sender as TextBox;
+            if (tb!=null)
+            {
+                tb.SelectAll();
+            }
+        }
+
+        private void SelectAllText (object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

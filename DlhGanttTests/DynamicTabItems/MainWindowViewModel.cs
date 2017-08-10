@@ -32,10 +32,16 @@ namespace DynamicTabItems
         public TabItemVM(IEnumerable<GanttChartItem> tasks)
         {
             Tasks = new ObservableCollection<GanttChartItem>(tasks);
+            IsReadOnly = true;
         }
 
+        private bool isReadOnly;
+        public bool IsReadOnly
+        {
+            get { return isReadOnly; }
+            set { if (isReadOnly != isReadOnly) isReadOnly = value; OnPropertyChanged(nameof(IsReadOnly)); }
+        }
     }
-
     public class MainWindowViewModel : BaseVm
     {
         private ObservableCollection<TabItemVM> tabItems;
@@ -63,11 +69,11 @@ namespace DynamicTabItems
         public void AddTabItem()
         {
 
-            TabItems.Add(new TabItemVM(new List<GanttChartItem>
+            TabItems.Add(new TabItemVM(new List<NhpGanttCgartItem>
             {
-                new GanttChartItem(){ Content="1", Start=DateTime.Now},
-                new GanttChartItem(){ Content="2", Start=DateTime.Now},
-                new GanttChartItem(){ Content="3", Start=DateTime.Now},
+                new NhpGanttCgartItem(){ Content="1", Start=DateTime.Now},
+                new NhpGanttCgartItem(){ Content="2", Start=DateTime.Now},
+                new NhpGanttCgartItem(){ Content="3", Start=DateTime.Now},
             }));
         }
     }
