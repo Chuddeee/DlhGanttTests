@@ -39,7 +39,22 @@ namespace DynamicTabItems
         public bool IsReadOnly
         {
             get { return isReadOnly; }
-            set { if (isReadOnly != isReadOnly) isReadOnly = value; OnPropertyChanged(nameof(IsReadOnly)); }
+            set { if (isReadOnly != value) isReadOnly = value; OnPropertyChanged(nameof(IsReadOnly)); }
+        }
+        private bool _isProjectTabOpen=true;
+
+        public bool IsProjectTabOpen
+        {
+            get { return _isProjectTabOpen; }
+            set { if (_isProjectTabOpen != value) _isProjectTabOpen = value; OnPropertyChanged(nameof(IsProjectTabOpen)); }
+        }
+
+        private bool _isEnabledCloseButton = true;
+
+        public bool IsEnabledCloseButton
+        {
+            get { return _isEnabledCloseButton; }
+            set { _isEnabledCloseButton = value; }
         }
     }
     public class MainWindowViewModel : BaseVm
@@ -69,11 +84,11 @@ namespace DynamicTabItems
         public void AddTabItem()
         {
 
-            TabItems.Add(new TabItemVM(new List<NhpGanttCgartItem>
+            TabItems.Add(new TabItemVM(new List<NhpGanttChartItem>
             {
-                new NhpGanttCgartItem(){ Content="1", Start=DateTime.Now},
-                new NhpGanttCgartItem(){ Content="2", Start=DateTime.Now},
-                new NhpGanttCgartItem(){ Content="3", Start=DateTime.Now},
+                new NhpGanttChartItem(){ Content="1", Start=DateTime.Now},
+                new NhpGanttChartItem(){ Content="2", Start=DateTime.Now},
+                new NhpGanttChartItem(){ Content="3", Start=DateTime.Now},
             }));
         }
     }

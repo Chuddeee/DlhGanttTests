@@ -20,6 +20,19 @@
             <Button Click="Button_Click_1">Debug</Button>
         </StackPanel>
         <TabControl Name="NhpTabControl" Grid.Row="1" ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTab}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                        <Button Name="CloseTabButton" Content="X" Cursor="Hand"
+                                    FontFamily="Courier" FontSize="9" FontWeight="Bold"  Margin="5,1,0,0" Padding="0" 
+                                    Width="16" Height="16"
+                                        Click="CloseTabButton_Click"
+                                    IsEnabled="{Binding IsEnabledCloseButton}"
+                                    Visibility="{Binding IsProjectTabOpen, Converter={x:Static local:BoolToVisibilityConverter.Instance}}" />
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <local:MyGantt></local:MyGantt>

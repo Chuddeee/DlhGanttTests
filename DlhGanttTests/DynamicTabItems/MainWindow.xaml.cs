@@ -67,5 +67,13 @@ namespace DynamicTabItems
                 MessageBox.Show("GanttChartDataGrid found successfully");
             }
         }
+
+        private void CloseTabButton_Click(object sender, RoutedEventArgs e)
+        {
+            var tabControl = NhpTabControl;
+            var dc = (MainWindowViewModel)DataContext;
+            dc.TabItems.Remove(dc.SelectedTab);
+            
+        }
     }
 }
